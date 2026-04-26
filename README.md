@@ -156,6 +156,76 @@ pytest test_app.py -v
 pytest test_app.py --cov=app --cov-report=html
 ```
 
+### Jenkins CI/CD Setup
+
+Run Jenkins as a Docker container for the CI/CD pipeline:
+
+```bash
+# Create Docker network for Jenkins
+docker network create jenkins
+
+# Run Jenkins container
+docker run -d \
+  --name jenkins-server \
+  --network jenkins \
+  -p 8080:8080 -p 50000:50000 \
+  -v jenkins_home:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  --restart=on-failure \
+  jenkins/jenkins:lts
+
+# Wait for Jenkins to initialize (30 seconds)
+sleep 30
+
+# Get initial admin password
+docker exec jenkins-server cat /var/jenkins_home/secrets/initialAdminPassword
+```
+
+**Access Jenkins:**
+- URL: http://localhost:8080
+- Username: `admin`
+- Password: (from command above)
+
+**Configure Jenkins:**
+1. Install suggested plugins or select: Git, Docker, SonarQube Scanner, Kubernetes, Pipeline
+2. Create admin user or continue as admin
+3. Add DockerHub credentials:
+   - Go to: **Manage Jenkins** → **Manage Credentials**
+   - Add **Username with password**
+   - ID: `dockerhub-credentials`
+   - Username: `govardhanankanniyapansriram824`
+   - Password: [Your DockerHub access token]
+4. Add GitHub credentials (if repo is private):
+   - Create Personal Access Token at: https://github.com/settings/tokens
+   - Scopes: `repo`, `admin:repo_hook`
+   - Add as **Username with password** in Jenkins
+   - ID: `github-credentials`
+5. Create Pipeline job:
+   - **New Item** → Name: `aceest-fitness-pipeline` → **Pipeline**
+   - **GitHub project**: `https://github.com/govardhanan-bits/2025ht66025-devops-assiginment2/`
+   - **Poll SCM**: `H/5 * * * *` (checks every 5 minutes)
+   - **Pipeline** → **Pipeline script from SCM** → **Git**
+   - **Repository URL**: `https://github.com/govardhanan-bits/2025ht66025-devops-assiginment2.git`
+   - **Branch**: `*/main`
+   - **Script Path**: `Jenkinsfile`
+6. Click **Build Now** to run the pipeline
+
+**Useful Jenkins Commands:**
+```bash
+# View logs
+docker logs jenkins-server
+
+# Stop/Start Jenkins
+docker stop jenkins-server
+docker start jenkins-server
+
+# Restart Jenkins
+docker restart jenkins-server
+
+# Get admin password again
+docker exec jenkins-server cat /var/jenkins_home/secrets/initialAdminPassword
+```
+
 ### Docker Deployment
 
 ```bash
