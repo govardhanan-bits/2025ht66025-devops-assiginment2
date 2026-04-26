@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: aceest-fitness
-          image: yourdockerhubusername/aceest-fitness:v3.1.2
+          image: govardhanankanniyapansriram824/aceest-fitness:v3.1.2
           ports:
             - containerPort: 5000
 
@@ -57,7 +57,7 @@ spec:
     spec:
       containers:
         - name: aceest-fitness
-          image: yourdockerhubusername/aceest-fitness:v3.2.4
+          image: govardhanankanniyapansriram824/aceest-fitness:v3.2.4
           ports:
             - containerPort: 5000
 

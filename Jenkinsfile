@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE = 'aceest-fitness'
         DOCKER_TAG = "${env.BUILD_NUMBER}"
         DOCKER_REGISTRY = 'docker.io'
-        DOCKER_REPO = 'yourdockerhubusername/aceest-fitness'
+        DOCKER_REPO = 'govardhanankanniyapansriram824/aceest-fitness'
         SONARQUBE_URL = 'http://localhost:9000'
     }
 

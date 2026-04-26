@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: aceest-fitness
-          image: yourdockerhubusername/aceest-fitness:latest
+          image: govardhanankanniyapansriram824/aceest-fitness:latest
           ports:
             - containerPort: 5000
           env:

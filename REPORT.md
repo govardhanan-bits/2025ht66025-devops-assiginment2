@@ -1,8 +1,11 @@
 # ACEest Fitness & Gym - CI/CD Pipeline Report
 
 **Course:** Introduction to DevOps (CSIZG514/SEZG514) | **Assignment:** 2  
-**Student:** [Your Name] | **ID:** [Your BITS ID]  
+**Student:** Govardhanan K S | **ID:** 2025ht66025  
 **Date:** April 2026
+
+**GitHub Repository:** [github.com/govardhanan-bits/2025ht66025-devops-assiginment2](https://github.com/govardhanan-bits/2025ht66025-devops-assiginment2)  
+**Docker Hub:** [govardhanankanniyapansriram824/aceest-fitness](https://hub.docker.com/r/govardhanankanniyapansriram824/aceest-fitness)
 
 ---
 
